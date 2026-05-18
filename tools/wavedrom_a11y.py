@@ -11,7 +11,7 @@ def extract_json(edn_path):
     match = re.search(r'\.\.\.\.(.+?)\.\.\.\.', content, re.DOTALL)
     if not match:
         raise ValueError(f"No wavedrom JSON found in {edn_path}")
-    # Try to extract title from comment line
+        
     # Try to extract title from section comment (e.g. //## 9.4 Atomic Memory Operations)
     comment_match = re.search(r'//#+\s*(.+)', content)
     if comment_match:
@@ -48,7 +48,7 @@ def inject_accessibility(svg_text, title, desc):
 def process(edn_path, output_svg_path):
     json_text, comment_title = extract_json(edn_path)
 
-    # Write temp JSON file
+    # Temp JSON file
     with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False, encoding='utf-8') as tmp:
         tmp.write(json_text)
         tmp_path = tmp.name
